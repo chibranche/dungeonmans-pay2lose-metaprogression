@@ -21,6 +21,14 @@ public sealed class Pay2LoseMod : IMod
 		Ctx = ctx;
 		Config.Register(ctx.Settings);
 		ctx.Patch("Pay 2 Lose legacy", Legacy.Register);
+		LegacyWindow.Register();
+		// Screenshot scenes (developer tool, inactive for players).
+		DevCapture.Scene("pay2lose_window", LegacyWindow.Open, () => LegacyWindow.IsOpen = false);
+		(int, int) saved = (0, 0);
+		DevCapture.Scene("pay2lose_window_example", () => { saved = Legacy.DevSet(3, 12_345); LegacyWindow.Open(); },
+			() => { LegacyWindow.IsOpen = false; Legacy.DevSet(saved.Item1, saved.Item2); });
+		DevCapture.Scene("pay2lose_menu", DungeonMans.dmPay2Lose.OpenMenu, DungeonMans.dmPay2Lose.CloseMenu);
+		DevCapture.Scene("pay2lose_docs", () => Ui.OpenModDocs("pay2lose"), Ui.CloseModSettings);
 	}
 }
 

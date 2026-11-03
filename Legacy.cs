@@ -18,7 +18,7 @@ internal static class Legacy
 	private const string TierVar = "qol_p2l_tiers";
 	private const string BestVar = "qol_p2l_best";
 	public const int PercentPerTier = 10;
-	private static readonly long[] Tiers = { 1, 1_000, 10_000, 50_000, 100_000, 500_000, 1_000_000, 5_000_000, 100_000_000 };
+	internal static readonly long[] Tiers = { 1, 1_000, 10_000, 50_000, 100_000, 500_000, 1_000_000, 5_000_000, 100_000_000 };
 
 	private static readonly MethodInfo TotalBrutality = AccessTools.Method(typeof(dmPay2Lose), "TotalBrutality_All");
 
@@ -29,6 +29,29 @@ internal static class Legacy
 	}
 
 	public static int BonusPercent => TiersReached * PercentPerTier;
+
+	// Highest Brutality this Academy has beaten the game with (0 if never).
+	public static int BestBrutality => Math.Max(0, dmGazetteer.GetMapScriptVar_Int(BestVar, MapName));
+
+	// Screenshot example only (DevCapture sessions never save): sets the tiers and best win, returns the old ones.
+	internal static (int tiers, int best) DevSet(int tiers, int best)
+	{
+		var old = (TiersReached, BestBrutality);
+		TiersReached = tiers;
+		dmGazetteer.SetMapScriptVar_Int(BestVar, best, MapName);
+		return old;
+	}
+
+	// How many tiers a win at this Brutality reaches.
+	public static int TierFor(long brutality)
+	{
+		int reached = 0;
+		while (reached < Tiers.Length && brutality >= Tiers[reached])
+		{
+			reached++;
+		}
+		return reached;
+	}
 
 	public static void Register(Harmony h)
 	{
@@ -97,11 +120,7 @@ internal static class Legacy
 		}
 		dmGame g = dmUtilities.theGame;
 		long brutality = Brutality();
-		int reached = 0;
-		while (reached < Tiers.Length && brutality >= Tiers[reached])
-		{
-			reached++;
-		}
+		int reached = TierFor(brutality);
 		int before = TiersReached;
 		if (brutality > dmGazetteer.GetMapScriptVar_Int(BestVar, MapName))
 		{
@@ -120,7 +139,7 @@ internal static class Legacy
 	}
 
 	// The game's own score, recomputed from the settings in case it was not refreshed after loading the save.
-	private static long Brutality()
+	internal static long Brutality()
 	{
 		long b = dmPay2Lose.GetCurrentBrutality();
 		try

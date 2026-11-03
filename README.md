@@ -14,6 +14,9 @@ In the base game, Pay 2 Lose only gives a Brutality score for the Steam leaderbo
   1 million, 5 million and 100 million, so **+90% at most**.
 - A clear at the same or a lower Brutality adds nothing. Your best tier is saved with the world.
 - Each new hero's log shows the current bonus. The kill shows how many tiers you gained.
+- **P2L window:** the P2L button in the top bar (the bar ModKit shares between mods) opens a window with your bonus,
+  your best win, the 9 tiers and what a win with the current hero would add. Hover a tier for the game's comment.
+- The game's Pay 2 Lose menu gets one line on its Summary page: which tier a win with those settings would reach.
 - **No score is sent to the Steam leaderboards** while the mod is on, since the boosted XP would make the scores
   unfair.
 
