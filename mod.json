@@ -1,0 +1,8 @@
+{
+  "id": "pay2lose",
+  "name": "Dungeonmans Pay 2 Lose Metaprogression",
+  "version": "0.2.0",
+  "author": "chibranche",
+  "description": "Beat the game with Pay 2 Lose settings and every later hero of the Academy earns more XP (+10% per new Brutality tier). Turns off Steam leaderboard uploads.",
+  "minModKitVersion": "0.2.0"
+}
