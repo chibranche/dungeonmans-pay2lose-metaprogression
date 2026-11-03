@@ -88,7 +88,7 @@ internal static class LegacyWindow
 	private static void Draw(dmGame g)
 	{
 		g.theRenderer.BeginSpriteBatch();
-		Rectangle c = Ui.ModalWindow("p2l_legacy", 22, 17, "Pay 2 Lose legacy", Close);
+		Rectangle c = Ui.ModalWindow("p2l_legacy", 22, 16, "Pay 2 Lose legacy", Close);
 		int x = c.X + 8, y = c.Y + 4;
 		bool on = Config.On(Config.Legacy);
 		int tiers = Legacy.TiersReached;
@@ -156,7 +156,6 @@ internal static class LegacyWindow
 		{
 			Ui.Text("The mod is off in Mod Settings: no XP bonus, and scores are sent as usual.", x, fy, Palette.Warn);
 		}
-		Ui.Text("Bonuses add up: each tier counts once. Your tiers are saved with this world.", x, fy + 24, Palette.TextDim);
 		g.theRenderer.EndSpriteBatch();
 	}
 
