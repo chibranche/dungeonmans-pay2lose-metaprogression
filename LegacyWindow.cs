@@ -60,7 +60,7 @@ internal static class LegacyWindow
 				{
 					g.theRenderer.BeginSpriteBatch();
 					Ui.HangingButton("p2l_legacy_open", r, "P2L", clickable ? Open : (Action)null,
-						tooltipText: "Pay 2 Lose legacy\nYour XP bonus and the Brutality tiers\nDrag to move", stackLevel: 6);
+						tooltipText: "Pay 2 Lose Metaprogression\nYour XP bonus and the Brutality tiers\nDrag to move", stackLevel: 6);
 					g.theRenderer.EndSpriteBatch();
 				}, priority: 50);
 			}
@@ -88,7 +88,7 @@ internal static class LegacyWindow
 	private static void Draw(dmGame g)
 	{
 		g.theRenderer.BeginSpriteBatch();
-		Rectangle c = Ui.ModalWindow("p2l_legacy", 22, 16, "Pay 2 Lose legacy", Close);
+		Rectangle c = Ui.ModalWindow("p2l_legacy", 22, 16, "Pay 2 Lose Metaprogression", Close);
 		int x = c.X + 8, y = c.Y + 4;
 		bool on = Config.On(Config.Legacy);
 		int tiers = Legacy.TiersReached;
@@ -172,8 +172,8 @@ internal static class LegacyWindow
 			Vector2 left = Traverse.Create(typeof(dmPay2Lose)).Field("vOptionsAreaTopLeft").GetValue<Vector2>();
 			int tier = Legacy.TierFor(dmPay2Lose.GetCurrentBrutality());
 			string text = tier == 0
-				? "Pay 2 Lose legacy: pick settings, then beat the game to earn an XP bonus."
-				: "Pay 2 Lose legacy: a win at this Brutality reaches tier " + tier + " of 9 (+" + tier * Legacy.PercentPerTier + "% XP).";
+				? "Pay 2 Lose Metaprogression: pick settings, then beat the game to earn an XP bonus."
+				: "Pay 2 Lose Metaprogression: a win at this Brutality reaches tier " + tier + " of 9 (+" + tier * Legacy.PercentPerTier + "% XP).";
 			if (tier > 0 && g.dungeonMans != null && !g.bShowMainMenu)
 			{
 				int gain = Math.Max(0, tier - Legacy.TiersReached) * Legacy.PercentPerTier;

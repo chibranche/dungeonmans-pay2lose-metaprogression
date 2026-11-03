@@ -1,4 +1,4 @@
-# Pay 2 Lose legacy
+# Pay 2 Lose Metaprogression
 
 In the base game, Pay 2 Lose settings only give you a Brutality score for the Steam leaderboards. With this mod, they also give XP to your Academy's heroes.
 

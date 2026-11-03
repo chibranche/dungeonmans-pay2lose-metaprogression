@@ -12,7 +12,7 @@ internal static class Config
 	public static void Register(ModSettings s)
 	{
 		settings = s;
-		s.AddToggle(Legacy, "Pay 2 Lose legacy (no leaderboards)",
+		s.AddToggle(Legacy, "Pay 2 Lose Metaprogression (no leaderboards)",
 			"Beating the game with Pay 2 Lose gives later heroes +10% XP per new Brutality tier. While on, no score is sent to the Steam leaderboards.",
 			group: "Pay 2 Lose");
 	}

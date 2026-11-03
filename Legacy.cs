@@ -6,7 +6,7 @@ using HarmonyLib;
 
 namespace DungeonmansPay2Lose;
 
-// Pay 2 Lose legacy: beating the game (killing the Final Foom) with a Pay 2 Lose hero gives every later hero of this
+// Pay 2 Lose Metaprogression: beating the game (killing the Final Foom) with a Pay 2 Lose hero gives every later hero of this
 // Academy +10% XP for each Brutality tier reached for the first time. Tiers are the game's own Brutality comments:
 // any setting, 1,000, 10,000, 50,000, 100,000, 500,000, 1 million, 5 million, 100 million (+90% at most).
 // Replaying at the same Brutality pays nothing. Saved with the world (overworld script variables; the "qol_" names
@@ -74,7 +74,7 @@ internal static class Legacy
 			announce = false;
 			if (Config.On(Config.Legacy) && BonusPercent > 0)
 			{
-				g.AddStringToLog("^3Pay 2 Lose legacy:^7 +" + BonusPercent + "% XP for this hero.");
+				g.AddStringToLog("^3Pay 2 Lose Metaprogression:^7 +" + BonusPercent + "% XP for this hero.");
 			}
 		};
 	}
@@ -126,16 +126,16 @@ internal static class Legacy
 		{
 			dmGazetteer.SetMapScriptVar_Int(BestVar, (int)Math.Min(int.MaxValue, brutality), MapName);
 		}
-		Log.Write("Pay 2 Lose legacy: game beaten at Brutality " + brutality + ", tier " + reached + " (had " + before + ")");
+		Log.Write("Pay 2 Lose Metaprogression: game beaten at Brutality " + brutality + ", tier " + reached + " (had " + before + ")");
 		if (reached <= before)
 		{
-			g.AddStringToLog("^3Pay 2 Lose legacy:^7 Brutality " + brutality + ", no new tier (still +" + BonusPercent + "% XP).");
+			g.AddStringToLog("^3Pay 2 Lose Metaprogression:^7 Brutality " + brutality + ", no new tier (still +" + BonusPercent + "% XP).");
 			return;
 		}
 		TiersReached = reached;
 		string msg = "+" + (reached - before) * PercentPerTier + "% XP for future heroes (now +" + BonusPercent + "%)";
-		g.AddStringToLog("^3Pay 2 Lose legacy:^7 Brutality " + brutality + ". " + msg + ".");
-		Ui.Toast("Pay 2 Lose legacy: " + msg, Palette.Good);
+		g.AddStringToLog("^3Pay 2 Lose Metaprogression:^7 Brutality " + brutality + ". " + msg + ".");
+		Ui.Toast("Pay 2 Lose Metaprogression: " + msg, Palette.Good);
 	}
 
 	// The game's own score, recomputed from the settings in case it was not refreshed after loading the save.
@@ -151,7 +151,7 @@ internal static class Legacy
 		}
 		catch (Exception e)
 		{
-			Log.Write("Pay 2 Lose legacy: could not recompute Brutality: " + e.Message);
+			Log.Write("Pay 2 Lose Metaprogression: could not recompute Brutality: " + e.Message);
 		}
 		return b;
 	}
